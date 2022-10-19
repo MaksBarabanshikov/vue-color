@@ -1,21 +1,19 @@
 <script setup lang="ts">
-import {Ref, ref} from "vue";
-import {generateRandomColor} from "@/helper/generateRandomColor";
+import {useColors} from "@/store";
 import Col from "@/components/Col.vue";
 
-const items:Ref = ref([])
-
-for (let i = 0; i < 6; i++) {
-  items.value.push(generateRandomColor())
-}
+const colors = useColors().colors
 
 </script>
 
 <template>
   <div class="row">
     <Col
-        v-for="item in items"
-        :color='item'
+        v-for="(item, index) in colors"
+        :key="item.hex"
+        :id="index"
+        :hex='item.hex'
+        :isLocked="item.isLocked"
     />
   </div>
 </template>

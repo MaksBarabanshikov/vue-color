@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import Row from "@/components/Row.vue";
+import AppColors from "@/components/AppColors.vue";
 </script>
 
 <template>
-  <Row/>
+  <AppColors/>
 </template>

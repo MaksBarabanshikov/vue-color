@@ -1,3 +1,6 @@
+import chroma from "chroma-js";
+import {IColor, TColors} from "@/types";
+
 export const generateRandomColor = (): string => {
     const hexCodes = '0123456789ABCDEF'
     let color = ''
@@ -6,4 +9,19 @@ export const generateRandomColor = (): string => {
     }
 
     return '#' + color
+}
+
+export const generateInitialColor = (): TColors => {
+    const arr:TColors = []
+
+    for (let i = 0; i < 6; i++) {
+        const color: IColor = {
+            hex: chroma.random(),
+            isLocked: false,
+        }
+        // @ts-ignore
+        arr.push(color)
+    }
+
+    return arr
 }

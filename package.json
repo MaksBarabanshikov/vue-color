@@ -16,10 +16,12 @@
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
     "chroma-js": "^2.4.2",
     "pinia": "^2.0.23",
+    "pinia-plugin-persistedstate": "^2.3.0",
     "vue": "^3.2.37"
   },
   "devDependencies": {
     "@fortawesome/vue-fontawesome": "^3.0.1",
+    "@types/chroma-js": "^2.1.4",
     "@types/node": "^18.11.2",
     "@typescript-eslint/eslint-plugin": "^5.40.1",
     "@typescript-eslint/parser": "^5.40.1",
