@@ -1,14 +1,16 @@
 <script setup lang="ts">
+import {storeToRefs} from "pinia";
 import {useColors} from "@/store";
-import Col from "@/components/Col.vue";
+import Color from "@/components/Color.vue";
 
-const colors = useColors().colors
+const colorsStore = useColors()
 
+const {colors} = storeToRefs(colorsStore)
 </script>
 
 <template>
   <div class="row">
-    <Col
+    <Color
         v-for="(item, index) in colors"
         :key="item.hex"
         :id="index"

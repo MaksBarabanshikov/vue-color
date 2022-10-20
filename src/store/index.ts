@@ -13,5 +13,5 @@ export const useColors = defineStore('colors',{
             this.colors[id].isLocked = !this.colors[id].isLocked
         }
     },
-    persist: true
+    persist: false
 })

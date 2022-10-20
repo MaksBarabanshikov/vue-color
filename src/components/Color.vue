@@ -1,38 +1,40 @@
 <script setup lang="ts">
 import ButtonLock from "@/components/ButtonLock.vue";
 import { useColors } from "@/store";
+import Hex from "@/components/Hex.vue";
+import {luminance} from "@/helper/helper";
+import chroma, {Color} from "chroma-js";
 
 interface Props {
   id: number
-  hex: string;
+  hex: Color;
   isLocked: boolean;
 }
 const props = defineProps<Props>()
 
 const colors = useColors();
 
+const myhex = props.hex
+
 const handleLocked = (id) => colors.changeLockStatus(id)
-
-const handleCopy = (text: string) => {
-  navigator.clipboard.writeText(text)
-  alert(`Цвет скопирован! ${text}`)
-}
-
 </script>
 <template>
   <div class="col" :style="{ 'background-color': hex }">
-    <h2 @click="handleCopy(hex)">{{hex}}</h2>
+    <hex
+        :hex="hex"
+        :luminance="luminance(props.hex)"
+    />
     <button-lock
         :isLocked="isLocked"
+        :luminance="luminance(props.hex)"
         @click="handleLocked(id)"
-        @handleLocked="isLocked = !isLocked"
     />
   </div>
 </template>
 
 <script lang="ts">
 export default {
-  name: "col",
+  name: "Color",
 }
 </script>
 

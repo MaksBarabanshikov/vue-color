@@ -1,14 +1,25 @@
 <script setup lang="ts">
   import Row from "@/components/Row.vue";
   import {useColors} from "@/store";
-  import {generateInitialColor} from "@/helper/generateRandomColor";
-  import {TColors} from "@/types";
+  import {generateInitialColor} from "@/helper/helper";
+  import {onBeforeMount, onDeactivated, onMounted} from "vue";
 
-  const colors = useColors()
+  const colorsStore = useColors()
 
-  const generatedColors: TColors = generateInitialColor()
+  const generateColors = () => colorsStore.setColors(generateInitialColor(colorsStore.colors))
 
-  colors.setColors(generatedColors)
+  const globalListener = (event) => {
+    event.preventDefault()
+    if (event.code === "Space") {
+      colorsStore.setColors(generateInitialColor(colorsStore.colors))
+    }
+  }
+
+  generateColors()
+
+  onMounted(() => window.addEventListener('keydown', globalListener))
+
+  onDeactivated(() => window.removeEventListener('keydown', globalListener))
 </script>
 
 <template>

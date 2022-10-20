@@ -1,13 +1,12 @@
 <script setup lang="ts">
-  import {ref} from "vue";
 
   interface Props {
     isLocked: boolean;
+    luminance: number
   }
 
-  const props = defineProps<Props>()
+  defineProps<Props>()
 
-  const emit = defineEmits(['handleLocked'])
   // const handleLocked = () => {
   //   locked.value = !locked.value
   //   console.log(locked.value)
@@ -15,7 +14,10 @@
 
 </script>
 <template>
-  <button @click="$emit('handleLocked')" class="button-lock">
+  <button
+      class="button-lock"
+      :style="{color: luminance > 0.5 ? 'black' : 'white'}"
+  >
     <fa v-if="isLocked" icon="lock"></fa>
     <fa v-else icon="lock-open"></fa>
   </button>

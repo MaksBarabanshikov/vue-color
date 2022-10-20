@@ -1,6 +1,7 @@
+import {Color} from "chroma-js";
+
 export interface IColor {
-    id: number;
-    hex: string;
+    hex: Color;
     isLocked: boolean;
 }
 
