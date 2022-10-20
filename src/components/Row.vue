@@ -6,13 +6,14 @@ import Color from "@/components/Color.vue";
 const colorsStore = useColors()
 
 const {colors} = storeToRefs(colorsStore)
+
 </script>
 
 <template>
   <div class="row">
     <Color
         v-for="(item, index) in colors"
-        :key="item.hex"
+        :key="item"
         :id="index"
         :hex='item.hex'
         :isLocked="item.isLocked"

@@ -32,5 +32,3 @@ export const generateInitialColor = (colors: TColors): TColors => {
 
     return arr
 }
-
-export const luminance = (hex: Color) => chroma(hex).luminance()

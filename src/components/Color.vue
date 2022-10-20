@@ -4,6 +4,7 @@ import { useColors } from "@/store";
 import Hex from "@/components/Hex.vue";
 import {luminance} from "@/helper/helper";
 import chroma, {Color} from "chroma-js";
+import {computed} from "vue";
 
 interface Props {
   id: number
@@ -14,7 +15,7 @@ const props = defineProps<Props>()
 
 const colors = useColors();
 
-const myhex = props.hex
+const luminance = computed(() => chroma(props.hex || 'black').luminance())
 
 const handleLocked = (id) => colors.changeLockStatus(id)
 </script>
@@ -22,11 +23,11 @@ const handleLocked = (id) => colors.changeLockStatus(id)
   <div class="col" :style="{ 'background-color': hex }">
     <hex
         :hex="hex"
-        :luminance="luminance(props.hex)"
+        :luminance="luminance"
     />
     <button-lock
         :isLocked="isLocked"
-        :luminance="luminance(props.hex)"
+        :luminance="luminance"
         @click="handleLocked(id)"
     />
   </div>
